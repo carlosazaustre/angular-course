@@ -1,0 +1,54 @@
+<div class="container-fluid text-center">
+  <img ng-src="/img/{{ empDetailCtrl.empleado.pic }}" width="200px" alt="{{ empDetailCtrl.empleado }}">
+  <h1>
+    {{ empDetailCtrl.empleado.fullName }}<br>
+    <small>{{ empDetailCtrl.empleado.title }}</small>
+  </h1>
+</div>
+
+<ul class="nav nav-tabs">
+  <li role="presentation"><a href="#">Contacto</a></li>
+  <li role="presentation"><a href="#">Info</a></li>
+</ul>
+
+<div class="tab-content">
+
+  <div role="tab-panel" class="tab-pane">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4 class="list-group-item-heading text-primary">Teléfono</h4>
+        <p class="list-group-item-text">
+          <span class="fa fa-lg fa-phone"></span>
+          {{ empDetailCtrl.empleado.cellPhone }}
+        </p>
+      </li>
+      <li class="list-group-item">
+        <h4 class="list-group-item-heading text-primary">Correo Electrónico</h4>
+        <p class="list-group-item-text">
+          <span class="fa fa-lg fa-envelope"></span>
+          {{ empDetailCtrl.empleado.email }}
+        </p>
+      </li>
+      <li class="list-group-item">
+        <h4 class="list-group-item-heading text-primary">Twitter</h4>
+        <p class="list-group-item-text">
+          <span class="fa fa-lg fa-twitter"></span>
+          {{ empDetailCtrl.empleado.twitterId }}
+        </p>
+      </li>
+      <li class="list-group-item">
+        <h4 class="list-group-item-heading text-primary">Página Web</h4>
+        <p class="list-group-item-text">
+          <span class="fa fa-lg fa-laptop"></span>
+          {{ empDetailCtrl.empleado.blog }}
+        </p>
+      </li>
+    </ul>
+  </div>
+
+  <div role="tab-panel" class="tab-pane">
+    Other
+  </div>
+
+
+</div>
