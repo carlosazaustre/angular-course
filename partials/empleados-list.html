@@ -1,3 +1,22 @@
-<ul ng-repeat="empleado in empListCtrl.empleados">
-  <li>{{ empleado.id }}</li>
+<form>
+  <div class="form-group">
+    <input type="search" class="form-control" placeholder="Busca un empleado...">
+  </div>
+</form>
+
+<ul class="media-list" ng-repeat="empleado in empListCtrl.empleados">
+  <hr>
+  <li class="media" ng-click="empListCtrl.viewDetail(empleado.id)">
+    <div class="media-left">
+      <a href="/{{ empleado.id }}">
+        <img class="media-object" width="64px" ng-src="img/{{ empleado.pic }}" alt="{{ empleado.fullName }}">
+      </a>
+    </div>
+    <div class="media-body">
+      <a href="/{{ empleado.id }}">
+        <h4 class="media-heading">{{ empleado.fullName }}</h4>
+        <p>{{ empleado.title }}  <span class="label label-info">{{ empleado.department }}</span></p>
+      </a>
+    </div>
+  </li>
 </ul>

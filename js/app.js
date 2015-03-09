@@ -13,6 +13,11 @@
         templateUrl: 'partials/empleados-list.html',
         controller: 'EmpleadosListController',
         controllerAs: 'empListCtrl'
+      })
+      .when('/:empleadoId', {
+        templateUrl: 'partials/empleado-detail.html',
+        controller: 'EmpleadoDetailController',
+        controllerAs: 'empDetailCtrl'
       });
   }
 

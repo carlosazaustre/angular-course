@@ -7,8 +7,8 @@
   function EmpleadosListController(Empleado) {
     var vm = this;
 
-    debugger;
-    vm.empleados = Empleado.query();
+    this.empleados = Empleado.query();
+
   }
 
 })();
