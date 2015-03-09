@@ -16,7 +16,13 @@ Curso básico de desarrollo web con AngularJS.
 
 # Instalación
 
+Ejecutar un servidor web (Apache, Nginx, Node.js) o si se tiene Python instalado:
 
+```
+$ python -m SimpleHTTPServer 8080
+```
+
+Se visita la URL `http://localhost:8080` y se puede visualizar la aplicación
 
 # Licencia
 The MIT License (MIT)
