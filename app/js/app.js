@@ -10,12 +10,12 @@
 
     $routeProvider
       .when('/', {
-        templateUrl: 'partials/empleados-list.html',
+        templateUrl: 'views/empleados-list.html',
         controller: 'EmpleadosListController',
         controllerAs: 'empListCtrl'
       })
       .when('/empleado/:empleadoId', {
-        templateUrl: 'partials/empleado-detail.html',
+        templateUrl: 'views/empleado-detail.html',
         controller: 'EmpleadoDetailController',
         controllerAs: 'empDetailCtrl'
       })

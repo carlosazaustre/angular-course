@@ -49,14 +49,14 @@
 
     <div ng-show="tabs.tab === 2">
       <ul class="list-group">
-        <li class="list-group-item">
+        <li class="list-group-item" ng-show="empDetailCtrl.empleado.managerId != 0">
           <h4 class="list-group-item-heading text-primary">Manager</h4>
           <p class="list-group-item-text">
             <span class="fa fa-lg fa-user"></span>
-            {{ empDetailCtrl.empleado.managerName }}
+            <a ng-href="/empleado/{{ empDetailCtrl.empleado.managerId }}">{{ empDetailCtrl.empleado.managerName }}</a>
           </p>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item" ng-show="empDetailCtrl.empleado.reports > 0">
           <h4 class="list-group-item-heading text-primary">
             Personal a cargo
             <span class="label label-info">{{ empDetailCtrl.empleado.reports }}</span>
@@ -67,12 +67,12 @@
               <hr>
               <li class="media">
                 <div class="media-left">
-                  <a href="/empleado/{{ subordinado.id }}">
+                  <a ng-href="/empleado/{{ subordinado.id }}">
                     <img class="media-object" width="64px" ng-src="img/{{ subordinado.pic }}" alt="{{ subordinado.fullName }}">
                   </a>
                 </div>
                 <div class="media-body">
-                  <a href="/empleado/{{ subordinado.id }}">
+                  <a ng-href="/empleado/{{ subordinado.id }}">
                     <h4 class="media-heading">{{ subordinado.fullName }}</h4>
                     <p>{{ subordinado.title }}  <span class="label label-info">{{ subordinado.department }}</span></p>
                   </a>

@@ -8,12 +8,12 @@
   <hr>
   <li class="media">
     <div class="media-left">
-      <a href="/empleado/{{ empleado.id }}">
+      <a ng-href="/empleado/{{ empleado.id }}">
         <img class="media-object" width="64px" ng-src="img/{{ empleado.pic }}" alt="{{ empleado.fullName }}">
       </a>
     </div>
     <div class="media-body">
-      <a href="/empleado/{{ empleado.id }}">
+      <a ng-href="/empleado/{{ empleado.id }}">
         <h4 class="media-heading">{{ empleado.fullName }}</h4>
         <p>{{ empleado.title }}  <span class="label label-info">{{ empleado.department }}</span></p>
       </a>
