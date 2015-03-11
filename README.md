@@ -1,6 +1,9 @@
 # Curso de AngularJS
 
-Curso básico de desarrollo web con AngularJS.
+Curso básico de desarrollo web con AngularJS por [@carlosazaustre](https://twitter.com/carlosazaustre)
+
+# Créditos
+Proyecto final basado en el [trabajo de Cristopher Coenraets](https://github.com/ccoenraets/angular-directory)
 
 # Temario
 
@@ -16,12 +19,19 @@ Curso básico de desarrollo web con AngularJS.
 
 # Instalación
 
-Ejecutar un servidor web (Apache, Nginx, Node.js) o si se tiene Python instalado:
-
+- Tener [Node.js](http://nodejs.org) instalado en el entorno de desarrollo.
+- Instalar las dependencias de desarrollo con
 ```
-$ python -m SimpleHTTPServer 8080
+$ npm install
 ```
-
+- Ejecutar Gulp para iniciar el entorno
+```
+$ gulp start
+```
+- Ejecutar Gulp para desarrollar. Los `watch` ejecutarán los cambios y serán servidor con `livereload`
+```
+$ gulp
+```
 Se visita la URL `http://localhost:8080` y se puede visualizar la aplicación
 
 # Licencia
