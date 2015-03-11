@@ -156,7 +156,6 @@
         return empleados;
       },
       get: function(empleado) {
-        debugger;
         return findById(parseInt(empleado));
       }
     };

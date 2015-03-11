@@ -14,10 +14,13 @@
         controller: 'EmpleadosListController',
         controllerAs: 'empListCtrl'
       })
-      .when('/:empleadoId', {
+      .when('/empleado/:empleadoId', {
         templateUrl: 'partials/empleado-detail.html',
         controller: 'EmpleadoDetailController',
         controllerAs: 'empDetailCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
       });
   }
 
