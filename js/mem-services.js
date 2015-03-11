@@ -43,7 +43,7 @@
     "fullName": "Shantell Meza",
     "managerId": 1,
     "managerName": "Laya Dueñas",
-    "reports": 0
+    "reports": 0,
     "title": "CFO",
     "department": "Corporate",
     "cellPhone": "786 042 170",
@@ -170,11 +170,19 @@
     return empleado;
   };
 
+  var findByManager = function(managerId) {
+    var results = empleados.filter(function(element) {
+      return managerId === element.managerId;
+    });
+    return results;
+  };
+
   // ---------------------------------------------------------------------------
 
   angular
     .module('directorio.services', [])
-    .factory('Empleado', Empleado);
+    .factory('Empleado', Empleado)
+    .factory('Report', Report);
 
 
   function Empleado() {
@@ -184,6 +192,14 @@
       },
       get: function(empleado) {
         return findById(parseInt(empleado));
+      }
+    };
+  }
+
+  function Report() {
+    return {
+      query: function(empleado) {
+        return findByManager(parseInt(empleado));
       }
     };
   }

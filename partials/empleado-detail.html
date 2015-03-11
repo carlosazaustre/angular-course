@@ -48,7 +48,41 @@
     </div>
 
     <div ng-show="tabs.tab === 2">
-      Other
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-primary">Manager</h4>
+          <p class="list-group-item-text">
+            <span class="fa fa-lg fa-user"></span>
+            {{ empDetailCtrl.empleado.managerName }}
+          </p>
+        </li>
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-primary">
+            Personal a cargo
+            <span class="label label-info">{{ empDetailCtrl.empleado.reports }}</span>
+          </h4>
+          <div class="list-group-item-text" ng-controller="ReportsController as reports">
+
+            <ul class="media-list" ng-repeat="subordinado in reports.subordinados">
+              <hr>
+              <li class="media">
+                <div class="media-left">
+                  <a href="/empleado/{{ subordinado.id }}">
+                    <img class="media-object" width="64px" ng-src="img/{{ subordinado.pic }}" alt="{{ subordinado.fullName }}">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <a href="/empleado/{{ subordinado.id }}">
+                    <h4 class="media-heading">{{ subordinado.fullName }}</h4>
+                    <p>{{ subordinado.title }}  <span class="label label-info">{{ subordinado.department }}</span></p>
+                  </a>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+        </li>
+      </ul>
     </div>
 
   </div>
