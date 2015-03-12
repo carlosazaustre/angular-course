@@ -179,6 +179,7 @@
 
   // ---------------------------------------------------------------------------
 
+  /* @ngInject */
   angular
     .module('directorio.services', [])
     .factory('Empleado', Empleado)

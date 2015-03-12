@@ -1,5 +1,6 @@
 (function() {
 
+  /* @ngInject */
   angular
     .module('directorio.controllers', ['directorio.services'])
     .controller('EmpleadosListController', EmpleadosListController)
@@ -7,6 +8,7 @@
     .controller('ReportsController', ReportsController)
     .controller('TabsController', TabsController);
 
+  /* @ngInject */
   function EmpleadosListController(Empleado) {
     var vm = this;
     this.empleados = Empleado.query();
@@ -16,11 +18,13 @@
     }
   }
 
+  /* @ngInject */
   function EmpleadoDetailController($routeParams, Empleado) {
     var vm = this;
     this.empleado = Empleado.get($routeParams.empleadoId);
   }
 
+  /* @ngInject */
   function ReportsController($routeParams, Report) {
     var vm = this;
     this.subordinados = Report.query($routeParams.empleadoId);

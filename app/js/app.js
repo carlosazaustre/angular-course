@@ -1,9 +1,11 @@
 (function() {
 
+  /* @ngInject */
   angular
-    .module('directorio', ['ngRoute', 'directorio.controllers'])
+    .module('directorio', ['ngRoute', 'directorio.controllers', "directorio.templates"])
     .config(config);
 
+  /* @ngInject */
   function config($locationProvider, $routeProvider) {
 
     $locationProvider.html5Mode(true);
