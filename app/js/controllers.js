@@ -10,6 +10,10 @@
   function EmpleadosListController(Empleado) {
     var vm = this;
     this.empleados = Empleado.query();
+
+    this.search = function() {
+      alert(vm.text);
+    }
   }
 
   function EmpleadoDetailController($routeParams, Empleado) {
