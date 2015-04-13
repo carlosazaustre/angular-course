@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body ng-app="myApp">
+  <div ng-controller="BusquedaController">
+    <h1>Búsqueda de Artículos</h1>
+    <caja-busqueda texto-a-buscar="articulosBuscados"></caja-busqueda>
+    <resultados-busqueda
+      resultados="articulosEncontrados"
+      texto-a-buscar="articulosBuscados">
+    </resultados-busqueda>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js"></script>
+  <script>
+    angular
+      .module("myApp", [])
+      .controller("BusquedaController", BusquedaController)
+      .directive("cajaBusqueda", cajaBusqueda)
+      .directive("resultadosBusqueda", resultadosBusqueda);
+
+    function cajaBusqueda() {
+      return {
+        restrict: 'E',
+        transclude: false,
+        scope: { textoABuscar: "=" },
+        controller: function($scope) {
+          $scope.textoLocal = "";
+          $scope.borrarBusqueda = function() {
+            $scope.textoABuscar = "";
+            $scope.textoLocal = "";
+          };
+          $scope.buscar = function() {
+            $scope.textoABuscar = $scope.textoLocal;
+          };
+        },
+        replace: true,
+        template:
+          "<form>" +
+          "<div>" +
+            "<input ng-model='textoLocal' type='text' />" +
+          "</div>" +
+          "<div>" +
+            "<button ng-click='borrarBusqueda()'>Borrar</button>" +
+            "<button ng-click='buscar()'>Buscar</button>" +
+          "</div>" +
+          "</form>"
+      };
+    };
+
+    function resultadosBusqueda() {
+      return {
+        restrict: 'E',
+        transclude: true,
+        scope: {
+          resultados: "=",
+          textoABuscar: "="
+        },
+        replace: true,
+        template:
+          "<div>" +
+            "<h4 ng-show='resultados'>Encontrados {{resultados.length}} resultados de la búsqueda <em>{{textoABuscar}}</em></h4>" +
+            "<ul ng-show='resultados'>" +
+              "<li ng-repeat='resultado in resultados'>" +
+                "{{resultado}}" +
+              "</li>" +
+            "</ul>" +
+          "</div>"
+      };
+    };
+
+    function BusquedaController($scope, $timeout) {
+      $scope.$watch("articulosBuscados", function(articulosBuscados) {
+        if(articulosBuscados) {
+          $scope.articulosEncontrados = [];
+          $timeout(function() {
+            $scope.articulosEncontrados = ["Silla", "Mesa", "Lámpara", "Ordenador"];
+          }, 1000);
+        } else {
+          $scope.articulosEncontrados = [];
+        }
+      });
+    }
+  </script>
+</body>
+</html>
