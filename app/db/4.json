@@ -1,0 +1,17 @@
+{
+  "id": 4,
+  "firstName": "Sergio",
+  "lastName": "Ocampo",
+  "fullName": "Sergio Ocampo",
+  "managerId": 1,
+  "managerName": "Laya Dueñas",
+  "reports": 4,
+  "title": "CTO",
+  "department": "Engineering",
+  "cellPhone": "771 611 317",
+  "email": "ServioOcampoGaona@rhyta.com",
+  "city": "Córdoba, ES",
+  "pic": "empleado04.png",
+  "twitterId": "@sergiocampo",
+  "blog": "http://carlosazaustre.es"
+}

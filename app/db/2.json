@@ -1,0 +1,17 @@
+{
+  "id": 2,
+  "firstName": "Astryd",
+  "lastName": "Valles",
+  "fullName": "Astryd Valles",
+  "managerId": 1,
+  "managerName": "Laya Dueñas",
+  "reports": 2,
+  "title": "CMO",
+  "department": "Marketing",
+  "cellPhone": "608 083 642",
+  "email": "strydVallesPacheco@jourrapide.com",
+  "city": "Madrid, ES",
+  "pic": "empleado02.png",
+  "twitterId": "@astryd",
+  "blog": "http://carlosazaustre.es"
+}

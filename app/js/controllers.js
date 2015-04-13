@@ -9,25 +9,34 @@
     .controller('TabsController', TabsController);
 
   /* @ngInject */
-  function EmpleadosListController(Empleado) {
+  function EmpleadosListController($rootScope, Empleado) {
     var vm = this;
     this.empleados = Empleado.query();
-
-    this.search = function() {
-      alert(vm.text);
-    }
+    $rootScope.empleados = this.empleados;
   }
 
   /* @ngInject */
   function EmpleadoDetailController($routeParams, Empleado) {
     var vm = this;
-    this.empleado = Empleado.get($routeParams.empleadoId);
+    this.empleado = Empleado.get({ empleadoId: $routeParams.empleadoId });
   }
 
   /* @ngInject */
-  function ReportsController($routeParams, Report) {
+  function ReportsController($rootScope, $routeParams, Empleado) {
+
+    // Busca que empleados tienen de manager, el Id que se pasa
+    // por parámetro
+    var findByManager = function(managerId) {
+      if($rootScope.empleados) {
+        var results = $rootScope.empleados.filter(function(empleado) {
+          return managerId === empleado.managerId;
+        });
+        return results;
+      }
+    };
+
     var vm = this;
-    this.subordinados = Report.query($routeParams.empleadoId);
+    this.subordinados = findByManager(parseInt( $routeParams.empleadoId ));
   }
 
   function TabsController() {
