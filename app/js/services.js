@@ -5,6 +5,7 @@
     .module('directorio.services', ["ngResource"])
     .factory('Empleado', Empleado);
 
+  /* @ngInject */
   function Empleado($resource) {
       return $resource("/db/:empleadoId.json", {}, {
         query: {
