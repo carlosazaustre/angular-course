@@ -1,45 +1,48 @@
 // -- Dependencies -------------------------------------------------------------
-var gulp      = require('gulp'),
-    connect   = require('gulp-connect'),
-    inject    = require('gulp-inject'),
-    gulpif    = require('gulp-if'),
-    useref    = require('gulp-useref'),
-    uglify    = require('gulp-uglify'),
-    angularFilesort = require('gulp-angular-filesort'),
-    templateCache = require('gulp-angular-templatecache'),
-    historyApiFallback = require('connect-history-api-fallback');
+
+var gulp               = require('gulp');
+var webserver          = require('gulp-webserver');
+var inject             = require('gulp-inject');
+var gulpif             = require('gulp-if');
+var useref             = require('gulp-useref');
+var uglify             = require('gulp-uglify');
+var angularFilesort    = require('gulp-angular-filesort');
+var templateCache      = require('gulp-angular-templatecache');
+var historyApiFallback = require('connect-history-api-fallback');
+
+var path = {
+  root    : './app/',
+  scripts : './app/js/',
+  styles  : './app/css/',
+  views   : './app/views/',
+  dist    : './dist'
+};
 
 // -- Tasks --------------------------------------------------------------------
+
+// Development server
 gulp.task('server', function() {
-  connect.server({
-    root: './app',
-    hostname: '0.0.0.0',
-    port: 8080,
-    livereload: true,
-    middleware: function(connect, opt) {
-      return [ historyApiFallback ];
-    }
-  });
+  gulp.src(path.root)
+    .pipe(webserver({
+      livereload: true,
+      host: '0.0.0.0',
+      port: 8080,
+      fallback: 'index.html'
+    }));
 });
 
-gulp.task('server-dist', function() {
-  connect.server({
-    root: './dist',
-    hostname: '0.0.0.0',
-    port: 8080,
-    livereload: true,
-    middleware: function(connect, opt) {
-      return [ historyApiFallback ];
-    }
-  });
+// Production test server
+gulp.task('server', function() {
+  gulp.src(path.dist)
+    .pipe(webserver({
+      livereload: true,
+      host: '0.0.0.0',
+      port: 8080,
+      fallback: 'index.html'
+    }));
 });
 
-gulp.task('html', function() {
-  gulp.src("./app/views/*.html")
-    .pipe(connect.reload());
-  return;
-});
-
+// Inject scripts and css links into HTML
 gulp.task('inject', function() {
   return gulp.src('index.html', { cwd: './app' })
     .pipe(inject(
@@ -55,6 +58,7 @@ gulp.task('inject', function() {
     .pipe(gulp.dest('./app'));
 });
 
+// Compress Angular views from HTML to JS script to cache it
 gulp.task('templates', function() {
   gulp.src('./app/views/**/*.html')
     .pipe(templateCache({
@@ -65,26 +69,31 @@ gulp.task('templates', function() {
     .pipe(gulp.dest('./app/js'));
 });
 
+// Concat and compress JS files to production
 gulp.task('compress', function() {
-  gulp.src('./app/index.html')
+  gulp.src(path.root + 'index.html')
     .pipe(useref.assets())
     .pipe(gulpif('*.js', uglify({ mangle: false })))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest(path.dist));
 });
 
+// Copy files from development env to production ready
 gulp.task('copy', function() {
-  gulp.src('./app/index.html')
+  gulp.src(path.root + 'index.html')
     .pipe(useref())
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest(path.dist));
   gulp.src('./app/img/*')
-    .pipe(gulp.dest('./dist/img'));
+    .pipe(gulp.dest(path.dist + 'img'));
 });
 
+// Watch changes and run tasks
 gulp.task('watch', function() {
-  gulp.watch(['./app/views/**/*.html'], ['html', 'templates']);
-  gulp.watch(['./app/css/**/*.css'], ['inject']);
-  gulp.watch(['./app/js/**/*.js'], ['inject']);
+  gulp.watch([path.views + '**/*.html'], ['templates']);
+  gulp.watch([path.styles + '**/*.css'], ['inject']);
+  gulp.watch([path.scripts + '**/*.js'], ['inject']);
 });
+
+// -- Run Tasks ----------------------------------------------------------------
 
 gulp.task('build', ['templates', 'compress', 'copy']);
 gulp.task('start', ['templates', 'inject']);

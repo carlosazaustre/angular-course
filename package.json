@@ -1,0 +1,31 @@
+{
+  "name": "angularjs",
+  "version": "1.0.0",
+  "description": "Curso básico de desarrollo web con AngularJS por [@carlosazaustre](https://twitter.com/carlosazaustre)",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "connect-history-api-fallback": "^0.0.5",
+    "gulp": "^3.8.11",
+    "gulp-angular-filesort": "^1.1.1",
+    "gulp-angular-templatecache": "^1.5.0",
+    "gulp-if": "^1.2.5",
+    "gulp-inject": "^1.2.0",
+    "gulp-uglify": "^1.1.0",
+    "gulp-useref": "^1.1.1",
+    "gulp-webserver": "^0.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carlosazaustre/angular-course.git"
+  },
+  "author": "Carlos Azaustre - cazaustre@gmail.com",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/carlosazaustre/angular-course/issues"
+  },
+  "homepage": "https://github.com/carlosazaustre/angular-course"
+}
