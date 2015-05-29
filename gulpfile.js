@@ -7,15 +7,15 @@ var gulpif             = require('gulp-if');
 var useref             = require('gulp-useref');
 var uglify             = require('gulp-uglify');
 var angularFilesort    = require('gulp-angular-filesort');
+var ngAnnotate         = require('gulp-ng-annotate');
 var templateCache      = require('gulp-angular-templatecache');
-var historyApiFallback = require('connect-history-api-fallback');
 
 var path = {
   root    : './app/',
   scripts : './app/js/',
   styles  : './app/css/',
   views   : './app/views/',
-  dist    : './dist'
+  dist    : './dist/'
 };
 
 // -- Tasks --------------------------------------------------------------------
@@ -31,49 +31,38 @@ gulp.task('server', function() {
     }));
 });
 
-// Production test server
-gulp.task('server', function() {
-  gulp.src(path.dist)
-    .pipe(webserver({
-      livereload: true,
-      host: '0.0.0.0',
-      port: 8080,
-      fallback: 'index.html'
-    }));
-});
-
-// Inject scripts and css links into HTML
+// Inject scripts links into HTML
 gulp.task('inject', function() {
   return gulp.src('index.html', { cwd: './app' })
     .pipe(inject(
-      gulp.src(['./app/js/**/*.js']).pipe(angularFilesort()), {
+      gulp.src([ path.scripts + '**/*.js' ]).pipe(angularFilesort()), {
         read: false,
         ignorePath: '/app'
       }))
-    .pipe(inject(
-      gulp.src(["./app/css/**/*.css"]), {
-        read: false,
-        ignorePath: '/app'
-      }))
-    .pipe(gulp.dest('./app'));
+    .pipe(gulp.dest(path.root));
 });
 
 // Compress Angular views from HTML to JS script to cache it
 gulp.task('templates', function() {
   gulp.src('./app/views/**/*.html')
     .pipe(templateCache({
-      root: 'views/',
+      root: path.views,
       module: 'directorio.templates',
       standalone: true
     }))
     .pipe(gulp.dest('./app/js'));
 });
 
-// Concat and compress JS files to production
+// Concat and compress JS files HTML linked to production
 gulp.task('compress', function() {
-  gulp.src(path.root + 'index.html')
-    .pipe(useref.assets())
-    .pipe(gulpif('*.js', uglify({ mangle: false })))
+  var assets = useref.assets();
+
+  return gulp.src(path.root + 'index.html')
+    .pipe(assets)
+    .pipe(gulpif('*.js', ngAnnotate()))
+    //.pipe(gulpif('*.js', uglify({ mangle: false })))
+    .pipe(assets.restore())
+    .pipe(useref())
     .pipe(gulp.dest(path.dist));
 });
 
@@ -88,13 +77,13 @@ gulp.task('copy', function() {
 
 // Watch changes and run tasks
 gulp.task('watch', function() {
-  gulp.watch([path.views + '**/*.html'], ['templates']);
-  gulp.watch([path.styles + '**/*.css'], ['inject']);
-  gulp.watch([path.scripts + '**/*.js'], ['inject']);
+  gulp.watch([ path.views + '**/*.html' ], [ 'templates' ]);
+  gulp.watch([ path.styles + '**/*.css' ], [ 'inject' ]);
+  gulp.watch([ path.scripts + '**/*.js' ], [ 'inject' ]);
 });
 
 // -- Run Tasks ----------------------------------------------------------------
 
-gulp.task('build', ['templates', 'compress', 'copy']);
-gulp.task('start', ['templates', 'inject']);
-gulp.task('default', ['server', 'watch']);
+gulp.task('build', [ 'templates', 'compress', 'copy' ]);
+gulp.task('start', [ 'templates', 'inject' ]);
+gulp.task('default', [ 'server', 'watch' ]);

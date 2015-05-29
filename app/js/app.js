@@ -2,7 +2,12 @@
 
   /* @ngInject */
   angular
-    .module('directorio', ['ngRoute', 'directorio.controllers', "directorio.templates"])
+    .module('directorio', [
+      'ngRoute',
+      'directorio.controllers',
+      'directorio.services',
+      'directorio.templates'
+    ])
     .config(config);
 
   /* @ngInject */
