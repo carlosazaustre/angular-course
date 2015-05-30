@@ -2,15 +2,19 @@
 
   /* @ngInject */
   angular
-    .module('directorio.services', ['ngResource'])
+    .module('directorio.services', [])
     .factory('Empleado', Empleado);
 
-  /* @ngInject */
-  /*function Empleado($resource, API_URL) {
-      var endpoint = API_URL + "/empleados/:empleadoId";
+  /*
+  // Si usásemos Resource
+  function Empleado($resource, API_URL) {
+    var endpoint = API_URL + "/empleados/:empleadoId";
 
-      return $resource(endpoint, { empleadoId: '@id'});
-  };*/
+    return $resource(endpoint, { empleadoId: '@id'});
+  };
+  */
+
+  /* @ngInject */
   function Empleado ($http, API_URL) {
     return {
       getAll      : getAll,
