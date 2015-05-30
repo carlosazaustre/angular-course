@@ -1,10 +1,10 @@
 <form>
   <div class="form-group">
-    <input type="search" class="form-control" ng-model="empListCtrl.query" placeholder="Busca un empleado...">
+    <input type="search" class="form-control" ng-model="empListCtrl.searchText" placeholder="Busca un empleado...">
   </div>
 </form>
 
-<ul class="media-list" ng-repeat="empleado in empListCtrl.empleados | filter:empListCtrl.query">
+<ul class="media-list" ng-repeat="empleado in empListCtrl.empleados | filter:empListCtrl.searchText">
   <hr>
   <li class="media">
     <div class="media-left">
