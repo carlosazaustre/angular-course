@@ -8,12 +8,11 @@
       'directorio.services',
       'directorio.templates'
     ])
-    .config(config)
-    .constant('API_URL', 'http://taller-angular.carloazaustre.es')
-    .constant('ASSET_URL', 'http://taller-angular.carlosazaustre.es/asset/');
-
+    .config(appConfig)
+    .constant('API_URL', 'http://taller-angular.carlosazaustre.es');
+    
   /* @ngInject */
-  function config($locationProvider, $routeProvider) {
+  function appConfig($locationProvider, $routeProvider) {
 
     $locationProvider.html5Mode(true);
 

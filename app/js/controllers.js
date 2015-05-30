@@ -11,14 +11,28 @@
   /* @ngInject */
   function EmpleadosListController($rootScope, Empleado) {
     var vm = this;
-    this.empleados = Empleado.query();
-    $rootScope.empleados = this.empleados;
+    Empleado
+      .getAll()
+      .success(function(data) {
+        $rootScope.empleados = data;
+        vm.empleados = data;
+      })
+      .error(function(err) {
+        console.log('Ha ocurrido un error: '+ err);
+      })
   }
 
   /* @ngInject */
   function EmpleadoDetailController($routeParams, Empleado) {
     var vm = this;
-    this.empleado = Empleado.get({ empleadoId: $routeParams.empleadoId });
+    Empleado
+      .getEmpleado( $routeParams.empleadoId )
+      .success(function(data) {
+        vm.empleado = data;
+      })
+      .error(function(err) {
+        console.log('Ha ocurrido un error: '+ err);
+      })
   }
 
   /* @ngInject */
@@ -26,17 +40,27 @@
 
     // Busca que empleados tienen de manager, el Id que se pasa
     // por parámetro
-    var findByManager = function(managerId) {
-      if($rootScope.empleados) {
+    var vm = this;
+    findByManager(parseInt($routeParams.empleadoId));
+
+    function findByManager (managerId) {
+      if ($rootScope.empleados) {
         var results = $rootScope.empleados.filter(function(empleado) {
           return managerId === empleado.managerId;
         });
-        return results;
+        vm.subordinados = results;
       }
-    };
-
-    var vm = this;
-    this.subordinados = findByManager(parseInt( $routeParams.empleadoId ));
+      else {
+        Empleado
+          .getAll()
+          .success(function (data) {
+            var results = data.filter(function(empleado) {
+              return managerId === empleado.managerId;
+            });
+            vm.subordinados = results;
+          });
+      }
+    }
   }
 
   function TabsController() {
