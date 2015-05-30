@@ -8,7 +8,9 @@
       'directorio.services',
       'directorio.templates'
     ])
-    .config(config);
+    .config(config)
+    .constant('API_URL', 'http://taller-angular.carloazaustre.es')
+    .constant('ASSET_URL', 'http://taller-angular.carlosazaustre.es/asset/');
 
   /* @ngInject */
   function config($locationProvider, $routeProvider) {
