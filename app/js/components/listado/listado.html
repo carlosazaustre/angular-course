@@ -1,0 +1,22 @@
+<form>
+  <div class="form-group">
+    <input type="search" class="form-control" ng-model="listado.searchText.fullName" placeholder="Busca un empleado...">
+  </div>
+</form>
+
+<ul class="media-list" ng-repeat="empleado in listado.empleados | filter:listado.searchText">
+  <hr>
+  <li class="media">
+    <div class="media-left">
+      <a ng-href="/empleado/{{ empleado.id }}">
+        <img class="media-object" width="64px" ng-src="//taller-angular.carlosazaustre.es/asset/{{ empleado.pic }}" alt="{{ empleado.fullName }}">
+      </a>
+    </div>
+    <div class="media-body">
+      <a ng-href="/empleado/{{ empleado.id }}">
+        <h4 class="media-heading">{{ empleado.fullName }}</h4>
+        <p>{{ empleado.title }}  <span class="label label-info">{{ empleado.department }}</span></p>
+      </a>
+    </div>
+  </li>
+</ul>
