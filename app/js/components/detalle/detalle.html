@@ -6,15 +6,15 @@
   </h1>
 </div>
 
-<div ng-controller="TabsController as tabs">
+<div>
   <ul class="nav nav-tabs">
-    <li ng-class="{ active:tabs.tab === 1 }"><a href="#" ng-click="tabs.selectTab(1)">Contacto</a></li>
-    <li ng-class="{ active:tabs.tab === 2 }"><a href="#" ng-click="tabs.selectTab(2)">Info</a></li>
+    <li ng-class="{ active:detalle.tab === 1 }"><a href="#" ng-click="detalle.selectTab(1)">Contacto</a></li>
+    <li ng-class="{ active:detalle.tab === 2 }"><a href="#" ng-click="detalle.selectTab(2)">Info</a></li>
   </ul>
 
   <div class="tab-content">
 
-    <div ng-show="tabs.tab === 1">
+    <div ng-show="detalle.tab === 1">
       <ul class="list-group">
         <li class="list-group-item">
           <h4 class="list-group-item-heading text-primary">Teléfono</h4>
@@ -47,7 +47,7 @@
       </ul>
     </div>
 
-    <div ng-show="tabs.tab === 2">
+    <div ng-show="detalle.tab === 2">
       <ul class="list-group">
         <li class="list-group-item" ng-show="detalle.empleado.managerId != 0">
           <h4 class="list-group-item-heading text-primary">Manager</h4>

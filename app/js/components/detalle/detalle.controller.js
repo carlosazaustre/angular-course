@@ -4,7 +4,7 @@
     .module('empleados.components')
     .controller('DetalleController', DetalleController);
 
-  function DetalleController ($routeParams, Empleado) {
+  function DetalleController ($routeParams, $rootScope, Empleado) {
     var vm = this;
     this.selectTab = selectTab;
 
@@ -49,9 +49,9 @@
           });
       }
     }
-    
+
   }
 
-  DetalleController.$inject = ['$routeParams', 'Empleado'];
+  DetalleController.$inject = ['$routeParams', '$rootScope', 'Empleado'];
 
 })();
