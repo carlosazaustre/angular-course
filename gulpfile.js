@@ -13,8 +13,6 @@ var templateCache      = require('gulp-angular-templatecache');
 var path = {
   root    : './app/',
   scripts : './app/js/',
-  styles  : './app/css/',
-  views   : './app/views/',
   dist    : './dist/'
 };
 
@@ -24,10 +22,10 @@ var path = {
 gulp.task('server', function() {
   gulp.src(path.root)
     .pipe(webserver({
-      livereload: true,
-      host: '0.0.0.0',
-      port: 8080,
-      fallback: 'index.html'
+      livereload  : true,
+      host        : '0.0.0.0',
+      port        : 8080,
+      fallback    : 'index.html'
     }));
 });
 
@@ -35,19 +33,21 @@ gulp.task('server', function() {
 gulp.task('inject', function() {
   return gulp.src('index.html', { cwd: './app' })
     .pipe(inject(
-      gulp.src([ path.scripts + '**/*.js' ]).pipe(angularFilesort()), {
-        read: false,
-        ignorePath: '/app'
-      }))
+      gulp.src([ path.scripts + '**/*.js' ])
+        .pipe(angularFilesort()), {
+          read: false,
+          ignorePath: '/app'
+        })
+    )
     .pipe(gulp.dest(path.root));
 });
 
 // Compress Angular views from HTML to JS script to cache it
 gulp.task('templates', function() {
-  gulp.src('./app/views/**/*.html')
+  gulp.src(path.scripts + 'components/**/*.html')
     .pipe(templateCache({
-      root: path.views,
-      module: 'directorio.templates',
+      root: path.scripts,
+      module: 'empleados.templates',
       standalone: true
     }))
     .pipe(gulp.dest('./app/js'));
