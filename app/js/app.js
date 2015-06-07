@@ -10,7 +10,7 @@
     ])
     .config(appConfig)
     .constant('API_URL', 'http://taller-angular.carlosazaustre.es');
-    
+
   /* @ngInject */
   function appConfig($locationProvider, $routeProvider) {
 

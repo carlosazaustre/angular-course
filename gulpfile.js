@@ -60,7 +60,7 @@ gulp.task('compress', function() {
   return gulp.src(path.root + 'index.html')
     .pipe(assets)
     .pipe(gulpif('*.js', ngAnnotate()))
-    //.pipe(gulpif('*.js', uglify({ mangle: false })))
+    .pipe(gulpif('*.js', uglify({ mangle: false })))
     .pipe(assets.restore())
     .pipe(useref())
     .pipe(gulp.dest(path.dist));

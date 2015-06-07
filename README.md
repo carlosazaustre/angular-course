@@ -34,6 +34,13 @@ $ gulp
 ```
 Se visita la URL `http://localhost:8080` y se puede visualizar la aplicación
 
+# Directorios
+
+* `app` contiene el código fuente del proyecto. En esta carpeta está el código JavaScript completo sin
+*minificar* ni *uglificar*
+
+* `dist` contiene el código preparado para produccion (un sólo archivo JS ya minificado)
+
 # Licencia
 The MIT License (MIT)
 
