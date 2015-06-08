@@ -5,9 +5,6 @@
     .factory('Empleado', Empleado);
 
   function Empleado ($http, API_URL) {
-    var _empleados = [];
-
-
     return {
       getAll      : getAll,
       getEmpleado : getEmpleado
