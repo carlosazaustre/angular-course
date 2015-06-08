@@ -4,7 +4,7 @@
     .module('empleados.components')
     .controller('DetalleController', DetalleController);
 
-  function DetalleController ($routeParams, $rootScope, Empleado) {
+  function DetalleController ($routeParams, Empleado, empleadoService) {
     var vm = this;
     this.selectTab = selectTab;
 
@@ -32,26 +32,26 @@
     // -- Funciones auxiliares -------------------------------------------------
 
     function _findByManager (managerId) {
-      if ($rootScope.empleados) {
-        var results = $rootScope.empleados.filter(function(empleado) {
-          return managerId === empleado.managerId;
-        });
-        vm.subordinados = results;
-      }
-      else {
+      var results;
+
+      if(empleadoService.getData().length === 0) {
         Empleado
           .getAll()
           .success(function (data) {
-            var results = data.filter(function(empleado) {
+            empleadoService.putData(data);
+            vm.subordinados = empleadoService.getData().filter(function(empleado) {
               return managerId === empleado.managerId;
             });
-            vm.subordinados = results;
-          });
+          })
+      } else {
+        vm.subordinados = empleadoService.getData().filter(function(empleado) {
+          return managerId === empleado.managerId;
+        });
       }
     }
 
   }
 
-  DetalleController.$inject = ['$routeParams', '$rootScope', 'Empleado'];
+  DetalleController.$inject = ['$routeParams', 'Empleado', 'empleadoService'];
 
 })();

@@ -4,7 +4,7 @@
     .module('empleados.components')
     .controller('ListadoController', ListadoController);
 
-  function ListadoController ($rootScope, Empleado) {
+  function ListadoController (Empleado, empleadoService) {
     var vm = this;
 
     initialize();
@@ -13,7 +13,7 @@
       Empleado
         .getAll()
         .success(function(data) {
-          $rootScope.empleados = data;
+          empleadoService.putData(data);
           vm.empleados = data;
         })
         .error(function(err) {
@@ -23,6 +23,6 @@
 
   }
 
-  ListadoController.$inject = ['$rootScope', 'Empleado'];
+  ListadoController.$inject = ['Empleado', 'empleadoService'];
 
 })();

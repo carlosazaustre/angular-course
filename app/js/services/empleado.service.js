@@ -2,25 +2,23 @@
 
   angular
     .module('empleados.services')
-    .factory('Empleado', Empleado);
+    .service('empleadoService', empleadoService);
 
-  function Empleado ($http, API_URL) {
+  function empleadoService () {
+    var _empleados = [];
 
     return {
-      getAll      : getAll,
-      getEmpleado : getEmpleado
+      getData: getData,
+      putData: putData
     }
 
-    function getAll () {
-      return $http.get(API_URL + '/empleados');
+    function getData () {
+      return _empleados;
     }
 
-    function getEmpleado (empleadoId) {
-      return $http.get(API_URL + '/empleados/' + empleadoId);
+    function putData (data) {
+      _empleados = data.slice();
     }
-
   }
-
-  Empleado.$inject = ['$http', 'API_URL'];
 
 })();
