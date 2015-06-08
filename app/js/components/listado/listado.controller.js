@@ -10,9 +10,7 @@
     initialize();
 
     function initialize () {
-      vm.empleados = Empleado.getAll();
-
-      /*Empleado
+      Empleado
         .getAll()
         .success(function(data) {
           empleadoService.putData(data);
@@ -20,7 +18,7 @@
         })
         .error(function(err) {
           console.log('Ha ocurrido un error: '+ err);
-        });*/
+        });
     }
 
   }
