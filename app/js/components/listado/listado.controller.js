@@ -6,10 +6,14 @@
 
   function ListadoController (Empleado, empleadoService) {
     var vm = this;
+    this.changeSearch = changeSearch;
 
     initialize();
 
     function initialize () {
+      vm.nombre = true;
+      vm.apellido = false;
+
       Empleado
         .getAll()
         .success(function(data) {
@@ -19,6 +23,20 @@
         .error(function(err) {
           console.log('Ha ocurrido un error: '+ err);
         });
+    }
+
+    function changeSearch (field) {
+      if (field === 'nombre') {
+        vm.nombre = true;
+        vm.apellido = false;
+        vm.searchText.lastName = "";
+
+      }
+      if (field === 'apellido') {
+        vm.apellido = true;
+        vm.nombre = false;
+        vm.searchText.firstName = "";
+      }
     }
 
   }
