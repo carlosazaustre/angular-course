@@ -1,89 +1,93 @@
 <div class="container-fluid text-center">
-  <img ng-src="{{ detalle.empleado.pic }}" width="200px" alt="{{ detalle.empleado }}">
-  <h1>
-    {{ detalle.empleado.fullName }}<br>
-    <small>{{ detalle.empleado.title }}</small>
-  </h1>
-</div>
 
-<div>
-  <ul class="nav nav-tabs">
-    <li ng-class="{ active:detalle.tab === 1 }"><a href="#" ng-click="detalle.selectTab(1)">Contacto</a></li>
-    <li ng-class="{ active:detalle.tab === 2 }"><a href="#" ng-click="detalle.selectTab(2)">Info</a></li>
-  </ul>
-
-  <div class="tab-content">
-
-    <div ng-show="detalle.tab === 1">
-      <ul class="list-group">
-        <li class="list-group-item">
-          <h4 class="list-group-item-heading text-primary">Teléfono</h4>
-          <p class="list-group-item-text">
-            <span class="fa fa-lg fa-phone"></span>
-            {{ detalle.empleado.cellPhone }}
-          </p>
-        </li>
-        <li class="list-group-item">
-          <h4 class="list-group-item-heading text-primary">Correo Electrónico</h4>
-          <p class="list-group-item-text">
-            <span class="fa fa-lg fa-envelope"></span>
-            {{ detalle.empleado.email }}
-          </p>
-        </li>
-        <li class="list-group-item">
-          <h4 class="list-group-item-heading text-primary">Twitter</h4>
-          <p class="list-group-item-text">
-            <span class="fa fa-lg fa-twitter"></span>
-            {{ detalle.empleado.twitterId }}
-          </p>
-        </li>
-        <li class="list-group-item">
-          <h4 class="list-group-item-heading text-primary">Página Web</h4>
-          <p class="list-group-item-text">
-            <span class="fa fa-lg fa-laptop"></span>
-            {{ detalle.empleado.blog }}
-          </p>
-        </li>
-      </ul>
-    </div>
-
-    <div ng-show="detalle.tab === 2">
-      <ul class="list-group">
-        <li class="list-group-item" ng-show="detalle.empleado.managerId != 0">
-          <h4 class="list-group-item-heading text-primary">Manager</h4>
-          <p class="list-group-item-text">
-            <span class="fa fa-lg fa-user"></span>
-            <a ng-href="/empleado/{{ detalle.empleado.managerId }}">{{ detalle.empleado.managerName }}</a>
-          </p>
-        </li>
-        <li class="list-group-item" ng-show="detalle.empleado.reports > 0">
-          <h4 class="list-group-item-heading text-primary">
-            Personal a cargo
-            <span class="label label-info">{{ detalle.empleado.reports }}</span>
-          </h4>
-          <div class="list-group-item-text">
-
-            <ul class="media-list" ng-repeat="subordinado in detalle.subordinados">
-              <hr>
-              <li class="media">
-                <div class="media-left">
-                  <a ng-href="/empleado/{{ subordinado.id }}">
-                    <img class="media-object" width="64px" ng-src="{{ subordinado.pic }}" alt="{{ subordinado.fullName }}">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <a ng-href="/empleado/{{ subordinado.id }}">
-                    <h4 class="media-heading">{{ subordinado.fullName }}</h4>
-                    <p>{{ subordinado.title }}  <span class="label label-info">{{ subordinado.department }}</span></p>
-                  </a>
-                </div>
-              </li>
-            </ul>
-
-          </div>
-        </li>
-      </ul>
-    </div>
-
+  <div class="col-sm-4">
+    <img ng-src="{{ detalle.empleado.pic }}" width="200px" alt="{{ detalle.empleado }}">
+    <h1>
+      {{ detalle.empleado.fullName }}<br>
+      <small>{{ detalle.empleado.title }}</small>
+    </h1>
   </div>
+
+  <div class="col-sm-8">
+    <ul class="nav nav-tabs">
+      <li ng-class="{ active:detalle.tab === 1 }"><a href="#" ng-click="detalle.selectTab(1)">Contacto</a></li>
+      <li ng-class="{ active:detalle.tab === 2 }"><a href="#" ng-click="detalle.selectTab(2)">Info</a></li>
+    </ul>
+
+    <div class="tab-content text-left">
+
+      <div ng-show="detalle.tab === 1">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <h4 class="list-group-item-heading text-primary">Teléfono</h4>
+            <p class="list-group-item-text">
+              <span class="fa fa-lg fa-phone"></span>
+              {{ detalle.empleado.cellPhone }}
+            </p>
+          </li>
+          <li class="list-group-item">
+            <h4 class="list-group-item-heading text-primary">Correo Electrónico</h4>
+            <p class="list-group-item-text">
+              <span class="fa fa-lg fa-envelope"></span>
+              {{ detalle.empleado.email }}
+            </p>
+          </li>
+          <li class="list-group-item">
+            <h4 class="list-group-item-heading text-primary">Twitter</h4>
+            <p class="list-group-item-text">
+              <span class="fa fa-lg fa-twitter"></span>
+              {{ detalle.empleado.twitterId }}
+            </p>
+          </li>
+          <li class="list-group-item">
+            <h4 class="list-group-item-heading text-primary">Página Web</h4>
+            <p class="list-group-item-text">
+              <span class="fa fa-lg fa-laptop"></span>
+              {{ detalle.empleado.blog }}
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div ng-show="detalle.tab === 2">
+        <ul class="list-group">
+          <li class="list-group-item" ng-show="detalle.empleado.managerId != 0">
+            <h4 class="list-group-item-heading text-primary">Manager</h4>
+            <p class="list-group-item-text">
+              <span class="fa fa-lg fa-user"></span>
+              <a ng-href="/empleado/{{ detalle.empleado.managerId }}">{{ detalle.empleado.managerName }}</a>
+            </p>
+          </li>
+          <li class="list-group-item" ng-show="detalle.empleado.reports > 0">
+            <h4 class="list-group-item-heading text-primary">
+              Personal a cargo
+              <span class="label label-info">{{ detalle.empleado.reports }}</span>
+            </h4>
+            <div class="list-group-item-text">
+
+              <ul class="media-list" ng-repeat="subordinado in detalle.subordinados">
+                <hr>
+                <li class="media">
+                  <div class="media-left">
+                    <a ng-href="/empleado/{{ subordinado.id }}">
+                      <img class="media-object" width="64px" ng-src="{{ subordinado.pic }}" alt="{{ subordinado.fullName }}">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <a ng-href="/empleado/{{ subordinado.id }}">
+                      <h4 class="media-heading">{{ subordinado.fullName }}</h4>
+                      <p>{{ subordinado.title }}  <span class="label label-info">{{ subordinado.department }}</span></p>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
 </div>
