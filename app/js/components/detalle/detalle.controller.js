@@ -16,6 +16,7 @@
       Empleado
         .getEmpleado( $routeParams.empleadoId )
         .success(function(data) {
+          data.pic = "http://taller-angular.carlosazaustre.es/asset/" + data.pic;
           vm.empleado = data;
         })
         .error(function(err) {
@@ -38,6 +39,9 @@
         Empleado
           .getAll()
           .success(function (data) {
+            data.forEach(function(item) {
+              item.pic = "http://taller-angular.carlosazaustre.es/asset/" + item.pic;
+            });
             empleadoService.putData(data);
             vm.subordinados = empleadoService.getData().filter(function(empleado) {
               return managerId === empleado.managerId;

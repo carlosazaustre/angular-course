@@ -1,5 +1,5 @@
 <div class="container-fluid text-center">
-  <img ng-src="//taller-angular.carlosazaustre.es/asset/{{ detalle.empleado.pic }}" width="200px" alt="{{ detalle.empleado }}">
+  <img ng-src="{{ detalle.empleado.pic }}" width="200px" alt="{{ detalle.empleado }}">
   <h1>
     {{ detalle.empleado.fullName }}<br>
     <small>{{ detalle.empleado.title }}</small>
@@ -68,7 +68,7 @@
               <li class="media">
                 <div class="media-left">
                   <a ng-href="/empleado/{{ subordinado.id }}">
-                    <img class="media-object" width="64px" ng-src="//taller-angular.carlosazaustre.es/asset/{{ subordinado.pic }}" alt="{{ subordinado.fullName }}">
+                    <img class="media-object" width="64px" ng-src="{{ subordinado.pic }}" alt="{{ subordinado.fullName }}">
                   </a>
                 </div>
                 <div class="media-body">

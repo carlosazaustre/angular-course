@@ -17,6 +17,9 @@
       Empleado
         .getAll()
         .success(function(data) {
+          data.forEach(function(item) {
+            item.pic = "http://taller-angular.carlosazaustre.es/asset/" + item.pic;
+          });
           empleadoService.putData(data);
           vm.empleados = data;
         })
