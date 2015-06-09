@@ -11,6 +11,11 @@
            class="form-control"
            ng-model="listado.searchText.lastName"
            placeholder="Busca por Apellido...">
+    <input ng-show="listado.titulo"
+           type="text"
+           class="form-control"
+           ng-model="listado.search.searchText.title"
+           placeholder="Busca por título">
 
     <div class="radio">
       <label>
@@ -26,6 +31,14 @@
                name="optionsRadios"
                ng-click="listado.changeSearch('apellido')">
         Busca por Apellido
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio"
+               name="optionsRadios"
+               ng-click="listado.changeSearch('titulo')">
+        Busca por Título
       </label>
     </div>
   </div>

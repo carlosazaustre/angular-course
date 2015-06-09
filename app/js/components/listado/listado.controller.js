@@ -13,6 +13,7 @@
     function initialize () {
       vm.nombre = true;
       vm.apellido = false;
+      vm.title = false;
 
       Empleado
         .getAll()
@@ -32,13 +33,21 @@
       if (field === 'nombre') {
         vm.nombre = true;
         vm.apellido = false;
-        vm.searchText.lastName = "";
+        vm.titulo = false;
+        vm.searchText = "";
 
       }
       if (field === 'apellido') {
         vm.apellido = true;
         vm.nombre = false;
-        vm.searchText.firstName = "";
+        vm.titulo = false;
+        vm.searchText = "";
+      }
+      if (field === 'titulo') {
+        vm.titulo = true;
+        vm.apellido = false;
+        vm.nombre = false;
+        vm.searchText = "";
       }
     }
 
