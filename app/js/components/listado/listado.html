@@ -1,64 +1,69 @@
-<form>
+<div nav-bar></div>
 
-  <div class="form-group">
-    <input ng-show="listado.nombre"
-           type="search"
-           class="form-control"
-           ng-model="listado.searchText.firstName"
-           placeholder="Busca por Nombre...">
-    <input ng-show="listado.apellido"
-           type="search"
-           class="form-control"
-           ng-model="listado.searchText.lastName"
-           placeholder="Busca por Apellido...">
-    <input ng-show="listado.titulo"
-           type="text"
-           class="form-control"
-           ng-model="listado.searchText.title"
-           placeholder="Busca por título">
+<div class="container-fluid">
 
-    <div class="radio">
-      <label>
-        <input type="radio"
-               name="optionsRadios"
-               ng-click="listado.changeSearch('nombre')" checked>
-        Busca por Nombre
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio"
-               name="optionsRadios"
-               ng-click="listado.changeSearch('apellido')">
-        Busca por Apellido
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio"
-               name="optionsRadios"
-               ng-click="listado.changeSearch('titulo')">
-        Busca por Título
-      </label>
-    </div>
-  </div>
+  <form>
 
-</form>
+    <div class="form-group">
+      <input ng-show="listado.nombre"
+             type="search"
+             class="form-control"
+             ng-model="listado.searchText.firstName"
+             placeholder="Busca por Nombre...">
+      <input ng-show="listado.apellido"
+             type="search"
+             class="form-control"
+             ng-model="listado.searchText.lastName"
+             placeholder="Busca por Apellido...">
+      <input ng-show="listado.titulo"
+             type="text"
+             class="form-control"
+             ng-model="listado.searchText.title"
+             placeholder="Busca por título">
 
-<div class="media-list">
-  <hr>
-  <div class="media col-sm-6 col-md-3" ng-repeat="empleado in listado.empleados | filter:listado.searchText">
-    <div class="media-left">
-      <a ng-href="/empleado/{{ empleado.id }}">
-        <img class="media-object" width="64px" ng-src="{{ empleado.pic }}" alt="{{ empleado.fullName }}">
-      </a>
+      <div class="radio">
+        <label>
+          <input type="radio"
+                 name="optionsRadios"
+                 ng-click="listado.changeSearch('nombre')" checked>
+          Busca por Nombre
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio"
+                 name="optionsRadios"
+                 ng-click="listado.changeSearch('apellido')">
+          Busca por Apellido
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio"
+                 name="optionsRadios"
+                 ng-click="listado.changeSearch('titulo')">
+          Busca por Título
+        </label>
+      </div>
     </div>
-    <div class="media-body">
-      <a ng-href="/empleado/{{ empleado.id }}">
-        <h4 class="media-heading">{{ empleado.fullName }}</h4>
-        <p>{{ empleado.title }}  <span class="label label-info">{{ empleado.department }}</span></p>
-      </a>
-    </div>
+
+  </form>
+
+  <div class="media-list">
     <hr>
+    <div class="media col-sm-6 col-md-3" ng-repeat="empleado in listado.empleados | filter:listado.searchText">
+      <div class="media-left">
+        <a ng-href="/empleado/{{ empleado.id }}">
+          <img class="media-object" width="64px" ng-src="{{ empleado.pic }}" alt="{{ empleado.fullName }}">
+        </a>
+      </div>
+      <div class="media-body">
+        <a ng-href="/empleado/{{ empleado.id }}">
+          <h4 class="media-heading">{{ empleado.fullName }}</h4>
+          <p>{{ empleado.title }}  <span class="label label-info">{{ empleado.department }}</span></p>
+        </a>
+      </div>
+      <hr>
+    </div>
   </div>
 </div>
