@@ -1,0 +1,35 @@
+<ul class="list-group">
+  <li class="list-group-item" ng-show="detalle.empleado.managerId != 0">
+    <h4 class="list-group-item-heading text-primary">Manager</h4>
+    <p class="list-group-item-text">
+      <span class="fa fa-lg fa-user"></span>
+      <a ng-href="/empleado/{{ detalle.empleado.managerId }}">{{ detalle.empleado.managerName }}</a>
+    </p>
+  </li>
+  <li class="list-group-item" ng-show="detalle.empleado.reports > 0">
+    <h4 class="list-group-item-heading text-primary">
+      Personal a cargo
+      <span class="label label-info">{{ detalle.empleado.reports }}</span>
+    </h4>
+    <div class="list-group-item-text">
+
+      <ul class="media-list" ng-repeat="subordinado in detalle.subordinados">
+        <hr>
+        <li class="media">
+          <div class="media-left">
+            <a ng-href="/empleado/{{ subordinado.id }}">
+              <img class="media-object" width="64px" ng-src="{{ subordinado.pic }}" alt="{{ subordinado.fullName }}">
+            </a>
+          </div>
+          <div class="media-body">
+            <a ng-href="/empleado/{{ subordinado.id }}">
+              <h4 class="media-heading">{{ subordinado.fullName }}</h4>
+              <p>{{ subordinado.title }}  <span class="label label-info">{{ subordinado.department }}</span></p>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </li>
+</ul>
